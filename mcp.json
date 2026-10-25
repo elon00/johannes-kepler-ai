@@ -1,0 +1,57 @@
+{
+  "mcpServers": {
+    "johannes-kepler-ai": {
+      "command": "cargo",
+      "args": [
+        "run",
+        "--release",
+        "--quiet"
+      ],
+      "env": {
+        "RUST_LOG": "info",
+        "TITAN_PROTOCOL": "KEPLER",
+        "FIPS_203_LEVEL": "ML-KEM-768",
+        "FIPS_204_LEVEL": "ML-DSA-65"
+      },
+      "tools": [
+        {
+          "name": "solve_kepler_transcendental_equation",
+          "description": "Solves Kepler's equation M = E - e sin E for eccentric anomaly across arbitrary orbital eccentricity",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "mean_anomaly_rad": {
+                "type": "number"
+              },
+              "eccentricity": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "mean_anomaly_rad",
+              "eccentricity"
+            ]
+          }
+        },
+        {
+          "name": "calculate_areal_velocity_sweep",
+          "description": "Verifies Kepler's second law by computing conserved angular momentum and constant areal velocity vectors",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "semi_major_axis_au": {
+                "type": "number"
+              },
+              "eccentricity": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "semi_major_axis_au"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
